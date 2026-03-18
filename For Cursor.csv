@@ -1,0 +1,52 @@
+﻿,,,,,
+AI Health Bot — Medical Malpractice Premium Calculator,,,,,
+Actuarial Pricing Model  |  NAIC Medical Professional Liability Data 2010–2024  |  For Demonstrative Purposes Only,,,,,
+,,,,,
+  SECTION 1 — USER INPUTS,,,,,
+,,Your Selection,Auto-Populated,,Source / Notes
+,State of Deployment,OH,Tier 1 - Low,,Select state from dropdown → Risk Tier auto-populates
+,State Avg Loss & DCC Ratio  |  Loading Factor,34.4%,0.80x,,Historical avg loss ratio  |  Geographic premium loading
+,Bot Type,Triage,Low Risk — Triage Only,,Triage / Diagnostic / Treatment Recommendation
+,Bot Accuracy Rate  |  Error Rate,97.8%,2.2%,,"Source: PMC12047852 meta-analysis (30 studies, 4,762 cases)"
+,Annual Patient Interactions,"5,000",,,Number of patient queries handled by the bot per year
+,Health Trend Scenario  |  Annual Slope,Unfavourable,0.379%,,Favourable (declining health risk) / Neutral / Unfavourable
+,Settlement Lag (Years),5,,,Avg years from policy inception to claim settlement (default: 2)
+,,,,,
+  SECTION 2 — CLAIM FREQUENCY CALCULATION,,,,,
+,,Rate,Basis,,Source / Notes
+,Error Rate,2.2%,,,Derived from bot type accuracy (PMC12047852)
+,Harm Rate,15.0%,3%–15% range,,Est. proportion of errors causing actual patient harm
+,Base Claim Rate (Human),4.0%,~2%,,Bureau of Justice Statistics — medical malpractice
+,AI Litigation Multiplier,2x,Triage 2x | Diag 3x | Tx 5x,,Novel assumption — no AI loss history; deep-pocket exposure
+,Adjusted AI Claim Rate,8.0%,,,Base claim rate × AI litigation multiplier
+,Payout Rate,22.0%,22%,,78% of claims result in no payment (NPDB)
+,Expected Annual Paid Claims,0.290,,,Interactions × error × harm × claim × payout rates
+,,,,,
+  SECTION 3 — CLAIM SEVERITY,,,,,
+,,Value,,,Source / Notes
+,Average Severity per Paid Claim,"$400,000",,,"NPDB avg $309,908 (2009–2018) | Maryland 2023 avg ~$410,000"
+,,,,,
+  SECTION 4 — PROJECTED EXPECTED LOSSES,,,,,
+,,Value,Driver,,Notes
+,Base Expected Loss,"$116,160",Claims × Severity,,Expected paid claims × average severity per claim
+,Trend-Adjusted Loss Ratio,36.3%,Base + Slope × Lag,,Projects loss ratio forward to settlement midpoint
+,Trend Adjustment Factor,1.06x,Projected ÷ Base,,Multiplier applied to base expected loss
+,Trended Expected Loss,"$122,559",Base × Trend,,Base loss adjusted for future loss ratio movement
+,Geographic Adjusted Loss,"$98,047",Trended × State,,Accounts for state litigation environment
+,,,,,
+  SECTION 5 — RECOMMENDED ANNUAL PREMIUM,,,,,
+,,Value,,,Notes
+,Expense & Profit Loading,20%,,,Standard 30% for operating expenses and profit margin
+,RECOMMENDED ANNUAL PREMIUM,"$122,559",,,Geographic adjusted loss ÷ (1 − expense & profit loading)
+,,,,,
+  SECTION 6 — KEY ASSUMPTIONS & LIMITATIONS,,,,,
+,"• Loss ratio benchmarks: NAIC Medical Professional Liability data, countrywide 2010–2024 (15-yr mean: 67.58%)",,,,
+,• Bot accuracy rates: PMC12047852 meta-analysis — Triage 97.8% | Diagnostic 61.4% | Treatment Recommendation 25.0%,,,,
+,• Harm rate: 15% of errors cause patient harm (range 3–15% per medical literature; conservative upper bound used),,,,
+,• Base claim rate: 2% of harms result in a filed claim (Bureau of Justice Statistics),,,,
+,• AI litigation multipliers (2x / 3x / 5x) are novel assumptions — no AI malpractice loss history exists,,,,
+,• Payout rate: 22% of filed claims result in payment (NPDB),,,,
+,"• Average severity: $350,000 per paid claim (NPDB $309,908 avg 2009–2018; Maryland 2023 ~$410,000)",,,,
+,• Trend slopes derived from linear regression 2018–2024: Favourable −0.414%/yr | Neutral 0% | Unfavourable +0.379%/yr,,,,
+,• Settlement lag: 2 years default — time from policy inception to full claim settlement,,,,
+,• LIMITATION: This is a demonstrative actuarial model only. No actual AI health bot malpractice loss data exists.,,,,
