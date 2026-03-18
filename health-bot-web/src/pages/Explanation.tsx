@@ -102,52 +102,50 @@ export function Explanation() {
             <div className="explanation-item">
               <div className="explanation-term">Adjusted AI claim rate</div>
               <div className="explanation-def">
-                \( \text{AdjustedClaimRate} = \text{BaseClaimRateHuman} \times
-                \text{AILitigationMultiplier} \)
+                Adjusted AI claim rate = Base claim rate (human) × AI litigation
+                multiplier
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Expected annual paid claims</div>
               <div className="explanation-def">
-                \( \text{Claims} = \text{Interactions} \times \text{ErrorRate} \times
-                \text{HarmRate} \times \text{AdjustedClaimRate} \times \text{PayoutRate}
-                \)
+                Expected annual paid claims = Annual patient interactions × error rate × harm
+                rate × Adjusted AI claim rate × payout rate
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Base expected loss</div>
               <div className="explanation-def">
-                \( \text{BaseLoss} = \text{Claims} \times
-                \text{AverageSeverityPerPaidClaim} \)
+                Base expected loss = Expected annual paid claims × average severity per
+                paid claim
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Trend-adjusted loss ratio</div>
               <div className="explanation-def">
-                \( \text{ProjectedLossRatio} = \text{StateAvgLossDCCRatio} +
-                (\text{Slope} \times \text{LagYears}) \)
+                Trend-adjusted loss ratio = State average loss &amp; DCC ratio + (trend slope
+                × settlement lag in years)
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Trend adjustment factor</div>
               <div className="explanation-def">
-                \( \text{TrendFactor} = \text{ProjectedLossRatio} \div
-                \text{StateAvgLossDCCRatio} \)
+                Trend adjustment factor = Trend-adjusted loss ratio ÷ State average loss &amp;
+                DCC ratio
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Trended &amp; geographic adjusted loss</div>
               <div className="explanation-def">
-                \( \text{TrendedLoss} = \text{BaseLoss} \times \text{TrendFactor} \) then
-                \( \text{GeoAdjustedLoss} = \text{TrendedLoss} \times
-                \text{StateLoadingFactor} \)
+                Trended loss = Base expected loss × trend adjustment factor, then Geo
+                adjusted loss = Trended loss × state loading factor
               </div>
             </div>
             <div className="explanation-item">
               <div className="explanation-term">Recommended annual premium</div>
               <div className="explanation-def">
-                \( \text{Premium} = \text{GeoAdjustedLoss} \div (1 -
-                \text{ExpenseProfitLoading}) \)
+                Recommended annual premium = Geo adjusted loss ÷ (1 − expenses &amp; profit
+                loading)
               </div>
             </div>
           </div>
