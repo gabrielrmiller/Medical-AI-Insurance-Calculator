@@ -102,7 +102,7 @@
 .calc-layout {
   position: relative;
   max-width: 1480px;
-  margin: 0 auto;
+    margin: 0 auto;
   padding: 16px 18px 110px;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -287,6 +287,23 @@
   transition: transform 160ms ease;
 }
 
+/* Smooth expand/collapse for advanced assumptions */
+.advanced-collapsible {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    max-height 400ms ease,
+    opacity 150ms ease;
+}
+
+.advanced-collapsible.open {
+  max-height: 520px; /* Large enough to hold all advanced fields */
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .calc-page .input-with-suffix {
   display: flex;
   align-items: center;
@@ -370,7 +387,7 @@
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.03);
-  position: relative;
+    position: relative;
   transition: transform 140ms ease, border-color 140ms ease;
 }
 
@@ -421,7 +438,7 @@
 
 .flow-card[data-tip]::after {
   content: attr(data-tip);
-  position: absolute;
+    position: absolute;
   left: 10px;
   right: 10px;
   bottom: calc(100% + 10px);
@@ -965,7 +982,7 @@
 .explainer-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 18px;
+    gap: 18px;
   align-items: start;
 }
 
@@ -1090,7 +1107,7 @@
   column-gap: 12px;
   row-gap: 4px;
   align-items: start;
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .section-icon {
@@ -1440,9 +1457,9 @@
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(20px);
   display: flex;
-  flex-direction: column;
-  text-align: center;
-}
+    flex-direction: column;
+    text-align: center;
+  }
 
 .panel h2 {
   margin-top: 0;
@@ -1571,8 +1588,8 @@
 }
 
 .input-with-prefix {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
   border-radius: 10px;
   border: 1px solid var(--border-soft);
   background-color: rgba(10, 10, 16, 0.8);
@@ -1638,7 +1655,7 @@
   margin-top: 8px;
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+    gap: 8px;
 }
 
 .secondary-button {
@@ -1737,7 +1754,7 @@
 
 .results-metric-card .results-metric-value {
   min-width: 0;
-  width: 100%;
+      width: 100%;
 }
 
 .premium-hero {

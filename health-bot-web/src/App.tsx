@@ -134,7 +134,7 @@ const DEFAULT_AVERAGE_SEVERITY_PER_PAID_CLAIM = 350_000 // $350,000
 const DEFAULT_EXPENSE_AND_PROFIT_LOADING = 0.3 // 30%
 
 const initialInputs: CalculatorInputs = {
-  state: 'OH',
+  state: 'WA',
   botType: 'triage',
   annualInteractions: 5000,
   trendScenario: 'neutral',
@@ -576,104 +576,105 @@ function App() {
                   <ArrowDown size={16} className={showAdvanced ? 'rot' : ''} />
                 </button>
 
-                {showAdvanced && (
-                  <>
-                    <div className="divider" />
-                    <div className="field-grid pills optional-grid advanced-inputs">
-                      <div className="field">
-                        <label htmlFor="harmRate">Harm rate</label>
-                        <div className="input-with-suffix">
-                          <input
-                            id="harmRate"
-                            type="number"
-                            min={0}
-                            step={0.1}
-                            value={optionalPercentInputs.harmRate}
-                            onChange={handleOptionalPercentChange('harmRate')}
-                            className="no-spinner"
-                          />
-                          <span className="suffix">%</span>
-                        </div>
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="baseClaimRate">Base claim rate (human)</label>
-                        <div className="input-with-suffix">
-                          <input
-                            id="baseClaimRate"
-                            type="number"
-                            min={0}
-                            step={0.1}
-                            value={optionalPercentInputs.baseClaimRateHuman}
-                            onChange={handleOptionalPercentChange('baseClaimRateHuman')}
-                            className="no-spinner"
-                          />
-                          <span className="suffix">%</span>
-                        </div>
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="payoutRate">Payout rate</label>
-                        <div className="input-with-suffix">
-                          <input
-                            id="payoutRate"
-                            type="number"
-                            min={0}
-                            step={0.1}
-                            value={optionalPercentInputs.payoutRate}
-                            onChange={handleOptionalPercentChange('payoutRate')}
-                            className="no-spinner"
-                          />
-                          <span className="suffix">%</span>
-                        </div>
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="severity">Avg severity per paid claim</label>
-                        <div className="input-with-suffix">
-                          <input
-                            id="severity"
-                            type="number"
-                            min={0}
-                            step={10000}
-                            value={averageSeverityInput}
-                            onChange={handleOptionalCurrencyChange('averageSeverityPerPaidClaim')}
-                            className="no-spinner"
-                          />
-                          <span className="suffix">$</span>
-                        </div>
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="loading">Expenses & profit loading</label>
-                        <div className="input-with-suffix">
-                          <input
-                            id="loading"
-                            type="number"
-                            min={0}
-                            step={0.5}
-                            value={optionalPercentInputs.expenseAndProfitLoading}
-                            onChange={handleOptionalPercentChange('expenseAndProfitLoading')}
-                            className="no-spinner"
-                          />
-                          <span className="suffix">%</span>
-                        </div>
-                      </div>
-
-                      <div className="optional-reset-cell">
-                        <button type="button" className="pill-button" onClick={resetOptional}>
-                          Reset optional
-                        </button>
+                <div
+                  className={`advanced-collapsible ${showAdvanced ? 'open' : ''}`}
+                  aria-hidden={!showAdvanced}
+                >
+                  <div className="divider" />
+                  <div className="field-grid pills optional-grid advanced-inputs">
+                    <div className="field">
+                      <label htmlFor="harmRate">Harm rate</label>
+                      <div className="input-with-suffix">
+                        <input
+                          id="harmRate"
+                          type="number"
+                          min={0}
+                          step={0.1}
+                          value={optionalPercentInputs.harmRate}
+                          onChange={handleOptionalPercentChange('harmRate')}
+                          className="no-spinner"
+                        />
+                        <span className="suffix">%</span>
                       </div>
                     </div>
-                    {hasOutOfRangePercent && (
-                      <p className="optional-warning">
-                        One or more percentage assumptions are outside the reasonable 0–100% range.
-                        Please review these inputs.
-                      </p>
-                    )}
-                  </>
-                )}
+
+                    <div className="field">
+                      <label htmlFor="baseClaimRate">Base claim rate (human)</label>
+                      <div className="input-with-suffix">
+                        <input
+                          id="baseClaimRate"
+                          type="number"
+                          min={0}
+                          step={0.1}
+                          value={optionalPercentInputs.baseClaimRateHuman}
+                          onChange={handleOptionalPercentChange('baseClaimRateHuman')}
+                          className="no-spinner"
+                        />
+                        <span className="suffix">%</span>
+                      </div>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="payoutRate">Payout rate</label>
+                      <div className="input-with-suffix">
+                        <input
+                          id="payoutRate"
+                          type="number"
+                          min={0}
+                          step={0.1}
+                          value={optionalPercentInputs.payoutRate}
+                          onChange={handleOptionalPercentChange('payoutRate')}
+                          className="no-spinner"
+                        />
+                        <span className="suffix">%</span>
+                      </div>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="severity">Avg severity per paid claim</label>
+                      <div className="input-with-suffix">
+                        <input
+                          id="severity"
+                          type="number"
+                          min={0}
+                          step={10000}
+                          value={averageSeverityInput}
+                          onChange={handleOptionalCurrencyChange('averageSeverityPerPaidClaim')}
+                          className="no-spinner"
+                        />
+                        <span className="suffix">$</span>
+                      </div>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="loading">Expenses & profit loading</label>
+                      <div className="input-with-suffix">
+                        <input
+                          id="loading"
+                          type="number"
+                          min={0}
+                          step={0.5}
+                          value={optionalPercentInputs.expenseAndProfitLoading}
+                          onChange={handleOptionalPercentChange('expenseAndProfitLoading')}
+                          className="no-spinner"
+                        />
+                        <span className="suffix">%</span>
+                      </div>
+                    </div>
+
+                    <div className="optional-reset-cell">
+                      <button type="button" className="pill-button" onClick={resetOptional}>
+                        Reset optional
+                      </button>
+                    </div>
+                  </div>
+                  {hasOutOfRangePercent && (
+                    <p className="optional-warning">
+                      One or more percentage assumptions are outside the reasonable 0–100% range.
+                      Please review these inputs.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
