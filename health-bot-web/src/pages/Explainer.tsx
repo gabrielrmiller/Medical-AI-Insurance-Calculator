@@ -1,11 +1,9 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
   CartesianGrid,
   Line,
   LineChart,
-  ReferenceDot,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -91,8 +89,6 @@ function scrollToSection(id: SectionId) {
 
 export function Explainer() {
   const rootRef = useRevealOnScroll()
-
-  const covidBand = useMemo(() => ({ start: 2020, end: 2021 }), [])
 
   return (
     <div className="explainer-root" ref={rootRef}>
@@ -258,9 +254,17 @@ export function Explainer() {
                     <CartesianGrid stroke="rgba(255,255,255,0.08)" vertical={false} />
                     <XAxis
                       dataKey="year"
-                      interval={0}
-                      padding={{ left: 8, right: 18 }}
-                      tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                      interval="preserveStartEnd"
+                      tickCount={7}
+                      minTickGap={10}
+                      padding={{ left: 4, right: 10 }}
+                      tick={{
+                        fill: 'rgba(255,255,255,0.7)',
+                        fontSize: 10,
+                        angle: -35,
+                        textAnchor: 'end',
+                      }}
+                      tickMargin={6}
                       axisLine={{ stroke: 'rgba(255,255,255,0.12)' }}
                       tickLine={{ stroke: 'rgba(255,255,255,0.12)' }}
                     />
@@ -283,22 +287,7 @@ export function Explainer() {
                     />
                     {/* Mean intentionally not shown as a hardcoded number */}
 
-                    {/* 2019 spike */}
-                    <ReferenceDot x={2019} y={79.83} r={5} fill="rgba(34,197,94,1)" stroke="rgba(0,0,0,0)" />
-                    <ReferenceLine
-                      x={2019}
-                      stroke="rgba(34,197,94,0.25)"
-                      label={{
-                        value: '2019: anomalous spike',
-                        fill: 'rgba(255,255,255,0.75)',
-                        fontSize: 12,
-                        position: 'insideTopLeft',
-                      }}
-                    />
-
-                    {/* COVID distorted band: 2020-2021 */}
-                    <ReferenceLine x={covidBand.start} stroke="rgba(34,197,94,0.18)" />
-                    <ReferenceLine x={covidBand.end} stroke="rgba(34,197,94,0.18)" />
+                    {/* (Removed special-date annotations for cleaner small-width layout) */}
 
                     <Line
                       type="monotone"
@@ -329,9 +318,8 @@ export function Explainer() {
 
           <div className="flow" data-reveal="hidden">
             <div className="flow-step">
-              <div className="flow-step-num">Step 1</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Bot type → accuracy (source: PMC12047852)</div>
+                <div className="flow-step-title">Step 1: Bot type → accuracy (source: PMC12047852)</div>
                 <div className="flow-step-subtitle">
                   Accuracy determines error rate.
                 </div>
@@ -353,9 +341,8 @@ export function Explainer() {
             </div>
 
             <div className="flow-step">
-              <div className="flow-step-num">Step 2</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Frequency chain</div>
+                <div className="flow-step-title">Step 2: Frequency chain</div>
                 <div className="flow-formula">
                   Error Rate × Harm Rate × Claim Rate × AI Litigation Multiplier × Payout Rate
                 </div>
@@ -363,56 +350,48 @@ export function Explainer() {
             </div>
 
             <div className="flow-step">
-              <div className="flow-step-num">Step 3</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Severity</div>
+                <div className="flow-step-title">Step 3: Severity</div>
                 <div className="flow-formula">Average paid claim size (NPDB data)</div>
               </div>
             </div>
 
             <div className="flow-step">
-              <div className="flow-step-num">Step 4</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Geographic loading (example states)</div>
+                <div className="flow-step-title">Step 4: Geographic loading (example states)</div>
                 <div className="table">
                   <div className="table-row table-head">
                     <div>State</div>
                     <div>Avg Loss &amp; DCC</div>
-                    <div>Avg loss incurred</div>
                     <div>Tier</div>
                   </div>
                   <div className="table-row">
                     <div>OH</div>
                     <div>34.40%</div>
-                    <div>$56.3M</div>
-                    <div>Tier 1 — Low</div>
+                    <div>Tier 1: Low</div>
                   </div>
                   <div className="table-row">
                     <div>CA</div>
                     <div>66.44%</div>
-                    <div>$357.0M</div>
-                    <div>Tier 2 — Moderate</div>
+                    <div>Tier 2: Moderate</div>
                   </div>
                   <div className="table-row">
                     <div>NY</div>
                     <div>80.62%</div>
-                    <div>$978.9M</div>
-                    <div>Tier 3 — High</div>
+                    <div>Tier 3: High</div>
                   </div>
                   <div className="table-row">
                     <div>NM</div>
                     <div>127.46%</div>
-                    <div>$54.3M</div>
-                    <div>Tier 4 — Very High</div>
+                    <div>Tier 4: Very High</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="flow-step">
-              <div className="flow-step-num">Step 5</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Trend projection</div>
+                <div className="flow-step-title">Step 5: Trend projection</div>
                 <div className="big-metrics">
                   <div className="big-metric">
                     <div className="big-metric-label">Favourable</div>
@@ -435,9 +414,8 @@ export function Explainer() {
             </div>
 
             <div className="flow-step flow-step-accent">
-              <div className="flow-step-num">Step 6</div>
               <div className="flow-step-body">
-                <div className="flow-step-title">Premium</div>
+                <div className="flow-step-title">Step 6: Premium</div>
                 <div className="flow-formula flow-formula-accent">
                   Premium = Geographic Adjusted Loss ÷ (1 − expense loading)
                 </div>

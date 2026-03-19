@@ -413,9 +413,17 @@ function App() {
         kind: 'calc' as const,
         label: 'Geography & Trend Adjusted Expected Loss',
         value:
-          baseExpectedLoss > 0 && geographicAdjustedLoss > 0
-            ? `${formatCurrency(baseExpectedLoss)} → ${formatCurrency(geographicAdjustedLoss)}`
-            : '—',
+          baseExpectedLoss > 0 && geographicAdjustedLoss > 0 ? (
+            <span className="flow-value-chain">
+              <span className="flow-value-top">{formatCurrency(baseExpectedLoss)}</span>
+              <span className="flow-value-bottom">
+                <span className="flow-arrow-inline">→</span>
+                {formatCurrency(geographicAdjustedLoss)}
+              </span>
+            </span>
+          ) : (
+            '—'
+          ),
         tip: 'Applies both the state geographic loading factor and the trend projection in a single adjustment.',
       },
     ],
@@ -462,18 +470,18 @@ function App() {
       <main className="calc-layout">
         <section className="card card-slate">
           <div className="panel-grid">
-            <div>
+        <div>
               <div className="section-header">
                 <h2>Mandatory inputs</h2>
                 <div className="section-actions">
-                  <button
+        <button
                     type="button"
                     className="ghost-button"
                     onClick={() => setShowInfo(true)}
-                  >
+        >
                     <Info size={16} />
                     Info
-                  </button>
+        </button>
                 </div>
               </div>
 
@@ -552,7 +560,7 @@ function App() {
                     className="no-spinner"
                   />
                 </div>
-              </div>
+        </div>
 
               <div className="panel-footer">
                 <button

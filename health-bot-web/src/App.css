@@ -103,7 +103,7 @@
   position: relative;
   max-width: 1480px;
     margin: 0 auto;
-  padding: 16px 18px 110px;
+  padding: 16px 18px 90px;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 14px;
@@ -113,7 +113,7 @@
 @media (max-width: 960px) {
   .calc-layout {
     grid-template-columns: minmax(0, 1fr);
-    padding-bottom: 110px;
+    padding-bottom: 70px;
   }
   .topbar-left {
     min-width: auto;
@@ -625,17 +625,30 @@
   right: 0;
   bottom: 0;
   z-index: 45;
-  padding: 10px 18px;
+  padding: 8px 16px;
   background: rgba(15, 25, 35, 0.78);
   backdrop-filter: blur(14px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.62);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  line-height: 1.25;
 }
 
 .calc-footer > * {
   max-width: 1480px;
   margin: 0 auto;
+}
+
+@media (max-width: 960px) {
+  .calc-footer {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+
+  /* Removes second line so the footer doesn't cover premium */
+  .calc-footer .muted-mini {
+    display: none;
+  }
 }
 
 .field {
@@ -701,26 +714,30 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
+@media (max-width: 720px) {
+  /* Prevent the two nav pills from feeling "too wide" on the right side */
+  .topbar-nav {
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-pill {
+    min-width: 0;
+    padding: 7px 10px;
+    width: min(90vw, 420px);
+    box-sizing: border-box;
+  }
+}
+
 .mobile-premium-bar {
   display: none;
 }
 
 @media (max-width: 960px) {
   .mobile-premium-bar {
-    display: flex;
-    position: fixed;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    z-index: 55;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 14px;
-    border-radius: 16px;
-    border: 1px solid rgba(0, 194, 168, 0.35);
-    background: rgba(26, 38, 51, 0.92);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+    display: none;
   }
 
   .mobile-premium-label {
@@ -735,6 +752,79 @@
     font-weight: 900;
     color: rgba(255, 255, 255, 0.96);
     text-shadow: 0 0 18px rgba(0, 194, 168, 0.22);
+  }
+}
+
+@media (max-width: 560px) {
+  /* Stack nav buttons on phone */
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topbar-left {
+    min-width: 0;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .topbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topbar-nav .nav-pill {
+    width: 100%;
+  }
+
+  /* Results flow cards: allow wrapping + keep values right-aligned */
+  .flow-card {
+    align-items: flex-start;
+  }
+
+  .flow-card-label {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: clip;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.25;
+  }
+
+  .flow-card-value {
+    white-space: normal;
+    text-align: right;
+    overflow: visible;
+    max-width: 52%;
+  }
+
+  .flow-value-chain {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .flow-value-bottom {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .flow-arrow-inline {
+    color: rgba(255, 255, 255, 0.68);
+    font-weight: 900;
+  }
+
+  /* Explainer steps: step number removed; let the body take full width */
+  .flow-step {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
   }
 }
 
@@ -1247,7 +1337,7 @@
 
 .flow-step {
   display: grid;
-  grid-template-columns: 70px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1324,7 +1414,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 90px 140px 140px 1fr;
+  grid-template-columns: 90px 140px 1fr;
   gap: 10px;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.02);
@@ -1424,6 +1514,17 @@
   }
   .metric-row {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Step 4 table shouldn't be clipped on narrow viewports */
+  .table {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .table-row {
+    min-width: 0;
+    grid-template-columns: 90px 1fr 1fr;
   }
 }
 
