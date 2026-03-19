@@ -1314,6 +1314,23 @@
   padding: 12px 14px;
 }
 
+/* Prevent selecting/highlighting chart SVG text */
+.chart-wrap,
+.chart-wrap * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent click-to-focus outlines/borders on chart SVG elements */
+.chart-wrap:focus,
+.chart-wrap:focus-visible,
+.chart-wrap *:focus,
+.chart-wrap *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .chart-notes {
   margin-top: 8px;
   display: flex;
